@@ -1,0 +1,37 @@
+var c = repeat(10,function(){if(flip()) {return "Cara"} else {return "Coroa"}})
+//print(c)
+
+var moeda = function() {
+  if(flip()){
+    return "Cara"
+  } else{
+    return "Coroa"
+  }
+}
+
+var lista = repeat(100, moeda)
+//print(lista)
+
+var a = repeat(10,flip) // ver quantos são true
+//viz(a)
+
+var make_coin = function(prob){
+  return function(){
+    return flip(prob)
+  }
+}
+
+var moeda1 = make_coin(0.7)
+//viz(repeat(10000,moeda1))
+var moeda2 = make_coin(0.4)
+
+var crazy_toss = function(){
+  if(flip()) {
+    return moeda1()
+  } else {
+    return moeda2()
+  }
+}
+//viz(repeat(10000,crazy_toss))
+
+viz(Infer(crazy_toss))
